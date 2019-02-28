@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
+  <ion-item *ngFor="let item of MainCourse">
+    <ion-avatar item-left>
+      <img src="../../assets/imgs/{{item.pd_id}}.jpg">
+    </ion-avatar>
+    <p>{{item.name}}</p>
+    <p>{{item.cost}} THB</p>
+    <button ion-button item-right (click)="AddCart(item)">Add</button>
+  </ion-item>
+  
+  
+  
+</ion-content>
+
+<ion-footer padding>
+  <ion-row>
+    <ion-col col-4>
+      <button ion-button block outline>{{badge}}</button>
+    </ion-col>
+    <ion-col col-8>
+      <button ion-button block (click)=Next()>Buy</button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

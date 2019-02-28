@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
+  <ion-grid>
+    <ion-row *ngFor="let item of cart;let i = index" style="border-bottom: 1px gray solid">
+      <ion-col col-8 padding-horizontal>
+        <p>{{ item.name }}</p>
+      </ion-col>
+      <ion-col col-2 text-center class="vertical-align-content">
+          <span style="padding-right:5px">{{ item.amount }}</span>
+          <span style="padding-right:5px"><ion-icon name="arrow-up" class="iconround" (click)="increaseAmount(item)"></ion-icon></span>
+          <ion-icon name="arrow-down" class="iconround" (click)="decreaseAmount(item)"></ion-icon>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <button ion-button color="danger" style="width:50%" (click)="delCart(i)">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="border-bottom: 1px gray solid">
+      <ion-col col-8 padding-horizontal>
+        <p>Total Price</p>
+      </ion-col>
+      <ion-col col-4 text-center class="vertical-align-content">
+        <strong>{{ totalPrice }}</strong>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Consumer-Detail -->
+  <form [formGroup]="consumerForm" (ngSubmit)="logForm()">
+    <ion-list >
+      <ion-item text-center>
+        <strong>Consumer Detail</strong>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Name :</ion-label>
+        <ion-input type="text" formControlName="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Tel :</ion-label>
+        <ion-input type="number" formControlName="tel" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <!-- Check Validate Email -->
+        <ion-label fixed>Email :</ion-label>
+        <ion-input type="text" formControlName="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Address :</ion-label>
+        <ion-input type="text" formControlName="address" required></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+  
+</ion-content>
+
+<!-- footer -->
+<ion-footer padding>
+  <button ion-button block color="primary" (click)="presentConfirm()">Next</button>
+</ion-footer>
